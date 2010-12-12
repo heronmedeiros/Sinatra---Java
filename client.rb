@@ -1,40 +1,50 @@
 require 'rubygems'
 require 'savon'
-#include 'inc'
+require 'sinatra'
+
+#================================================================================================
+#=========================Configuracao do web service============================================
+#================================================================================================
 client = Savon::Client.new "http://localhost:8080/axis/Hello.jws?wsdl"
   
-response = client.somar { |soap| soap.body = { 'a' => 2*36, 'b'=>10 }  }
 
-valor =  response.to_hash
-
-#:somar_response = 
-
-puts "\n\n\n\n\n\n\n\n\n\n o retorno do ws eh #{valor[:somar_response][:somar_return].to_i}"
+#================================================================================================
 
 
 
+#================================================================================================
+#=========================Configuracao do sinatra================================================
+#================================================================================================
+get "/" do
+	erb :index
+end
+post "/processa" do
+	valor1 = params[:post][:valor1]
+	valor2 = params[:post][:valor2]
+		
+	
+	
+	response = client.somar do  |soap| 
+		soap.body = { :a => valor1, :b =>valor2 }  
+	end
+
+	valor =  response.to_hash
+	session["resultado"] = response
+	erb :result
+end
+
+get "/webservice" do
+	session["valor"] = valor[:somar_response][:somar_return].to_i
+	erb :wservice
+end
+
+get "/xml" do
+	"#{response}"
+end
+#================================================================================================
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#teste[:somar_response].each_key do |k|
-#	p teste[:somar_response][k] 
+#protected 
+#def callWebService()
+#	;
 #end
-

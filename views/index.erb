@@ -1,0 +1,53 @@
+<html>
+	<head><title>ws em ruby</title></head>
+	<style>
+		body{
+			text-align: center;
+			font-family:Arial, Georgia,Serif;
+			margin: 0 auto;
+			//background: gray;
+			width: 60%;			
+		}
+		#all{
+			
+			margin-top:30px;
+			border:1px black dotted;
+		}
+		#content{text-align: left;
+			width: 40%;
+			background: white;}
+		h1{background: white; 
+			width:100%;
+			}
+	</style>
+	<body>
+	<div id="all">
+		<h1>Web service</h1>
+
+			<div id="content">
+			<h2>Informe a senha</h2>
+			<fieldset id="novo_chamado" class="">
+			  <legend>Usuario</legend>
+			    			  
+			  <form action="/processa" method="post" accept-charset="utf-8">
+				<p>
+				  <label for="valor1">valor 1</label>
+				  <br/>
+				  <input id ="valor1" type="text" name="post[valor1]" />
+				  
+				  
+				  <label for="valor2">valor 2</label>
+				  <br/>
+				  <input id="valor2" type="text" name="post[valor2]"  />
+				  
+				</p>
+				<p>
+					<input type="submit" value="Continue &rarr;">
+			    </p>
+			  </form>
+		  
+		</fieldset>
+			</div>
+		</div>
+	</body>
+</html>
