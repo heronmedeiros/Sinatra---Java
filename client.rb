@@ -16,7 +16,7 @@ post "/processa" do
 	valor1 = params[:post][:valor1]
 	valor2 = params[:post][:valor2]
 
-	response = client.somar do  |soap|
+	response = client.calcula do  |soap|
 		soap.body = { :a => valor1, :b =>valor2 }
   end
 	valor =  response.to_hash
@@ -26,7 +26,7 @@ post "/processa" do
  end
 
 get "/webservice" do
-	session["valor"] = valor[:somar_response][:somar_return].to_i
+	session["valor"] = valor[:calcula_response][:calcula_return].to_i
 	erb :wservice
 end
 
