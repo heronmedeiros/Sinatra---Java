@@ -20,7 +20,7 @@ post "/processa" do
 		soap.body = { :a => valor1, :b =>valor2 }
   end
 	valor =  response.to_hash
-  response = client.somar(valor1.to_i, valor2.to_i)
+  response = client.calcula(valor1.to_i, valor2.to_i)
 	session["resultado"] = response
 	erb :result
  end
